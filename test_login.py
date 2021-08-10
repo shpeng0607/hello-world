@@ -1,6 +1,6 @@
 # coding:utf-8
 '''
-login 失敗 code : 401
+login test case
 '''
 import unittest
 from app import app
@@ -12,35 +12,26 @@ class TestLogin(unittest.TestCase):
     def setUp(self):
         app.testing = True  
         self.client = app.test_client()
+        self.expect_result = {'identity': 'Wrong id or password!'}
     
     def test_empty_name_password(self):
         """測試模擬場景，使用者名稱或密碼不完整"""
 
         response = self.client.post("/login", data={})
-        resp_json = response.data
-        resp_dict = json.loads(resp_json)
-        self.assertIn("code", resp_dict)
-        code = resp_dict.get("code")
-        self.assertEqual(code, "401")
+        resp_json = response.json
+        self.assertEqual(resp_json, self.expect_result)
 
         response = self.client.post("/login", data={"name": "admin"})
-        resp_json = response.data
-        resp_dict = json.loads(resp_json)
-        self.assertIn("code", resp_dict)
-        code = resp_dict.get("code")
-        self.assertEqual(code, "401")
+        resp_json = response.json
+        self.assertEqual(resp_json, self.expect_result)
 
 
     def test_wrong_name_password(self):
         """測試使用者名稱或密碼錯誤"""
         
         response = self.client.post("/login", data={"name": "admin", "password": "xxx"})
-        resp_json = response.data
-        resp_dict = json.loads(resp_json)
-        self.assertIn("code", resp_dict)
-
-        code = resp_dict.get("code")
-        self.assertEqual(code, "401")
+        resp_json = response.json
+        self.assertEqual(resp_json, self.expect_result)
 
 
 if __name__ == '__main__':
