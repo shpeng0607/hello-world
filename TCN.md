@@ -10,22 +10,22 @@ TCN 的特點:
 * 結構可以獲取任意長度的序列，並將其映射到相同長度的輸出序列，就像使用RNN一樣
 
 # TCN Sequence modeling
-假設:
-* input sequence: x0, x1, x2, …, xT
-* output sequence: y0, y1, y2, …, yT<br>
-預測T時間的輸出: <br>
+* 假設:
+    * input sequence: x0, x1, x2, …, xT
+    * output sequence: y0, y1, y2, …, yT<br>
+* 預測T時間的輸出: <br>
 ![](https://img-blog.csdnimg.cn/20190503170412750.png)<br>
-loss function: <br>
+* loss function: <br>
 ![](https://img-blog.csdnimg.cn/20190503170443291.png)
 
 # TCN Causal Convolutions
 ![](https://img-blog.csdnimg.cn/20190503170519803.png)<br><br>
-TCN 的目標:
-* 網路的上一層到下一層，輸入與輸出的長度相同
-* 不存在利用將來信息的情形 <br>
-解決方案:
-* Full-Convolutional Network
-* casual convolution
+* TCN 的目標:
+    * 網路的上一層到下一層，輸入與輸出的長度相同
+    * 不存在利用將來信息的情形 <br>
+* 解決方案:
+    * Full-Convolutional Network
+    * casual convolution<br>
 ![](https://provenclei.github.io/assets/tcn/tcn_11.png)<br>
 
 # TCN Dilated Convolutions
